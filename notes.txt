@@ -41,7 +41,15 @@ with the following content:
 host_key_checking = false
 
 *************************************************************
+EC2
+t3micro - ami-052efd3df9dad4825
+us-east-1
 
 *************************************************************
-
+git repo
+git remote add origin https://github.com/nenbunwe/udacity_devops_capstone.git
+git clone https://github.com/nenbunwe/udacity_devops_capstone.git
+git remote add origin https://github.com/nenbunwe/<repo-name>.git
+git nenbunwe - uG2uhE7@53NjuKb
+token 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 
 *************************************************************
