@@ -1,0 +1,47 @@
+Instance
+Canonical, Ubuntu, 22.04 LTS,ami-052efd3df9dad4825 - t2.micro
+
+*************************************************************
+Setting up ansble - prometheus
+- ec2-54-89-245-237.compute-1.amazonaws.com
+- run ansible
+  ansible-playbook -i inventory.txt main.yml --private-key=~/udacity-ansible.pem
+
+
+*************************************************************
+query aws ec2 for ip PublicIpAddresses and pipe/add it to the inventory file
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --output text >> inventory.txt
+*************************************************************
+installing apache on localhost
+edit playbook to localhost
+ansible-playbook apache_main.yml
+*************************************************************
+leeson4 modeule 12
+ansible Remote
+ansible-playbook main-remote.yml -i inventory --private-key udacity.pem
+
+*************************************************************
+for unprotected private file error
+change file permission using
+chmod 600 ~/.ssh/file.pem
+1.-goto home - show hidden files - open .ssh folder
+copy the .pem file to the .ssh folder and run the code above
+2. relace the .ssh with your current  folder
+
+pwd - on terminal to print current path
+
+
+chmod 600 ~/Documents/udacity-projects/udacity_devops_capstone/udacity_project.pem
+*************************************************************
+fatal unreachable
+If you still facing accessability issue during SSH,
+then create a ansible.cfg file in the top level directory,
+with the following content:
+[defaults]
+host_key_checking = false
+
+*************************************************************
+
+*************************************************************
+
+*************************************************************

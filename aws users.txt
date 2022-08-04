@@ -1,0 +1,19 @@
+04-08-2022$ aws iam list-users
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "goltokka",
+            "UserId": "AIDA6IP2YROIE3BDQHKG5",
+            "Arn": "arn:aws:iam::980315310992:user/goltokka",
+            "CreateDate": "2022-06-18T03:58:30Z"
+        },
+        {
+            "Path": "/",
+            "UserName": "gt",
+            "UserId": "AIDA6IP2YROIA6YNAYWHC",
+            "Arn": "arn:aws:iam::980315310992:user/gt",
+            "CreateDate": "2022-07-21T18:24:23Z"
+        }
+    ]
+}
