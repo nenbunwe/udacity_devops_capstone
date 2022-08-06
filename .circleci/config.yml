@@ -63,7 +63,11 @@ jobs:
   #         at: ~/
   #     - run: cat ~/output.txt
 
+<<<<<<< HEAD
   # Exercise: Infrastructure Creation
+=======
+  Exercise: Infrastructure Creation
+>>>>>>> 2f51a41d9acca855a507ebb538957a5f78c9a446
   # Exercise - Rollback
   create_infrastructure:
     docker:
