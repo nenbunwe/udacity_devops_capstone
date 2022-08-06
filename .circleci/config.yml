@@ -101,7 +101,7 @@ jobs:
           command: |
             ansible-playbook -i inventory.txt ec_web_server.yml
 
-  # Exercise: Smoke Testing
+  # Exercise: Smoke Testing 
   # smoke_test:
   #   docker:
   #     - image: alpine:latest
@@ -208,7 +208,7 @@ jobs:
           #  aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}
 
 
-
+ 
 workflows:
   # Name the workflow "welcome"
   my_workflow:
