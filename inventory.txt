@@ -1,2 +1,2 @@
 [web]
-ec2-44-203-207-53.compute-1.amazonaws.com
+44.203.207.53
