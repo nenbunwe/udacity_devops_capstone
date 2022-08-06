@@ -4,7 +4,7 @@
   # hosts: ubuntu
   # Use the public IP if the VM is already created
   # hosts: 3.230.123.117
-  hosts: web
+  hosts: ec2-44-203-207-53.compute-1.amazonaws.com
   user: ubuntu
   become: true
   become_method: sudo
