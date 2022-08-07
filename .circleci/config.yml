@@ -65,42 +65,42 @@ jobs:
 
   # Exercise: Infrastructure Creation
   # Exercise - Rollback
-  create_infrastructure:
-    docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run:
-          name: Create Cloudformation Stack
-          command: |
-            aws cloudformation deploy \
-              --template-file template.yml \
-              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-              --region us-east-1
-      # Fail the job intentionally to simulate an error.
-      # Uncomment the line below if you want to fail the current step
-      # - run: return 1
-      - destroy_environment
+  # create_infrastructure:
+  #   docker:
+  #     - image: amazon/aws-cli
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Create Cloudformation Stack
+  #         command: |
+  #           aws cloudformation deploy \
+  #             --template-file template.yml \
+  #             --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+  #             --region us-east-1
+  #     # Fail the job intentionally to simulate an error.
+  #     # Uncomment the line below if you want to fail the current step
+  #     # - run: return 1
+  #     - destroy_environment
 
 
   # Exercise: Config and Deployment
-  # configure_infrastructure:
-  #   docker:
-  #     - image: python:3.7-alpine3.11
-  #   steps:
-  #     - checkout
-  #     - add_ssh_keys:
-  #         fingerprints: ["7c:5b:3e:bf:c9:3d:cf:f6:ee:c6:f8:16:9d:cf:79:61"] # You can get this ID in the section where you registered the SSH Key
-  #     - run:
-  #         name: Install ansible
-  #         command: |
-  #           # install the dependencies needed for your playbook
-  #           apk add --update ansible
-  #     - run:
-  #         name: Configure server
-  #         command: |
-  #           ansible-playbook -i inventory.txt ec_web_server.yml
-  #
+  configure_infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["7c:5b:3e:bf:c9:3d:cf:f6:ee:c6:f8:16:9d:cf:79:61"] # You can get this ID in the section where you registered the SSH Key
+      - run:
+          name: Install ansible
+          command: |
+            # install the dependencies needed for your playbook
+            apk add --update ansible
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i inventory.txt ec_web_server.yml
+
   # Exercise: Smoke Testing
   # smoke_test:
   #   docker:
@@ -218,13 +218,13 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       # - welcome/run/
-      - print_greetings
+      # - print_greetings
       # - upload_file
       # - download_file:
       #     requires:
       #       - upload_file
-      - create_infrastructure
-      # - configure_infrastructure
+      # - create_infrastructure
+      - configure_infrastructure
       # - create_and_deploy_front_end
       # - promote_to_production:
       #     requires:
