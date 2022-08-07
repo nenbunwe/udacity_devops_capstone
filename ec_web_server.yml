@@ -3,8 +3,8 @@
 - name: Exercise for setting up a web server in an EC
   # hosts: ubuntu
   # Use the public IP if the VM is already created
-  # hosts: 3.230.123.117
-  hosts: ec2-18-207-100-27.compute-1.amazonaws.com
+  hosts: 18.207.100.27
+  # hosts: ec2-18-207-100-27.compute-1.amazonaws.com
   # hosts: all
   user: ubuntu
   become: true
