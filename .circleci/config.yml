@@ -63,8 +63,8 @@ jobs:
   #         at: ~/
   #     - run: cat ~/output.txt
 
-  Exercise: Infrastructure Creation
-  Exercise - Rollback
+  # Exercise: Infrastructure Creation
+  # Exercise - Rollback
   create_infrastructure:
     docker:
       - image: amazon/aws-cli
@@ -224,7 +224,7 @@ workflows:
       # - download_file:
       #     requires:
       #       - upload_file
-      # - create_infrastructure
+      - create_infrastructure
       # - configure_infrastructure
       # - create_and_deploy_front_end
       # - promote_to_production:
