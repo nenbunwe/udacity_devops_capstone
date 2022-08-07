@@ -97,7 +97,7 @@ jobs:
             # install the dependencies needed for your playbook
             apk add --update ansible
       - run:
-          name: Configure server
+          name: Configure-server
           command: |
             ansible-playbook -i inventory.txt ec_web_server.yml --private-key=~/udacity_project.pem
 
