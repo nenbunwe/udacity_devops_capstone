@@ -1,6 +1,6 @@
 # Exercise - Rollback
 AWSTemplateFormatVersion: 2010-09-09
-Description: ND9991 C3 L4
+Description: goltokka udacity capstone
 Resources:
   EC2Instance:
     Type: 'AWS::EC2::Instance'
@@ -16,9 +16,9 @@ Resources:
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      GroupDescription: Enable SSH access via port 22
+      GroupDescription: Enable all traffic to all ports #SSH access via port 22
       SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
+        - IpProtocol: '-1'
+          # FromPort: '22'
+          # ToPort: '22'
           CidrIp: 0.0.0.0/0

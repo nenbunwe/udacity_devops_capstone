@@ -63,24 +63,25 @@ jobs:
   #         at: ~/
   #     - run: cat ~/output.txt
 
-  # Exercise: Infrastructure Creation
-  # Exercise - Rollback
-  # create_infrastructure:
-  #   docker:
-  #     - image: amazon/aws-cli
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Create Cloudformation Stack
-  #         command: |
-  #           aws cloudformation deploy \
-  #             --template-file template.yml \
-  #             --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-  #             --regions us-east-1
-  #     # Fail the job intentionally to simulate an error.
-  #     # Uncomment the line below if you want to fail the current step
-  #     # - run: return 1
-  #     - destroy_environment
+  Exercise: Infrastructure Creation
+  Exercise - Rollback
+  create_infrastructure:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Create Cloudformation Stack
+          command: |
+            aws cloudformation deploy \
+              --template-file template.yml \
+              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+              --regions us-east-1
+      # Fail the job intentionally to simulate an error.
+      # Uncomment the line below if you want to fail the current step
+      # - run: return 1
+      - destroy_environment
+          when: on fail
 
 
   # Exercise: Config and Deployment
@@ -139,20 +140,20 @@ jobs:
   # Job 1
   # Executes the bucket.yml - Deploy an S3 bucket, and interface with that bucket to synchronize the files between local and the bucket.
   # Note that the `--parameter-overrides` let you specify a value that override parameter value in the bucket.yml template file.
-  create_and_deploy_front_end:
-    docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run:
-          name: Execute bucket.yml - Create Cloudformation Stack
-          command: |
-            aws cloudformation deploy \
-            --template-file bucket.yml \
-            --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7} \
-            --parameter-overrides MyBucketName=my-old-bucket-${CIRCLE_WORKFLOW_ID:0:7}"
-      # Uncomment the step below if yoou wish to upload all contents of the current directory to the S3 bucket
-      - run: aws s3 sync . s3://my-old-bucket-${CIRCLE_WORKFLOW_ID:0:7} --delete
+  # create_and_deploy_front_end:
+  #   docker:
+  #     - image: amazon/aws-cli
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Execute bucket.yml - Create Cloudformation Stack
+  #         command: |
+  #           aws cloudformation deploy \
+  #           --template-file bucket.yml \
+  #           --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7} \
+  #           --parameter-overrides MyBucketName=my-old-bucket-${CIRCLE_WORKFLOW_ID:0:7}"
+  #     # Uncomment the step below if yoou wish to upload all contents of the current directory to the S3 bucket
+  #     - run: aws s3 sync . s3://my-old-bucket-${CIRCLE_WORKFLOW_ID:0:7} --delete
 
   # Exercise: Promote to Production - Job 2
   # Fetch and save the pipeline ID (bucket ID) responsible for the last release.
@@ -225,7 +226,7 @@ workflows:
       #       - upload_file
       # - create_infrastructure
       # - configure_infrastructure
-      - create_and_deploy_front_end
+      # - create_and_deploy_front_end
       # - promote_to_production:
       #     requires:
             # - create_and_deploy_front_end
